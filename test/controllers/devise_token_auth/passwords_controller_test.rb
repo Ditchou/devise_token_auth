@@ -399,11 +399,18 @@ class DeviseTokenAuth::PasswordsControllerTest < ActionController::TestCase
       end
     end
     describe 'unconfirmable user' do
+      setup do
+        @request.env['devise.mapping'] = Devise.mappings[:unconfirmable_user]
+      end
+
+      teardown do
+        @request.env['devise.mapping'] = Devise.mappings[:user]
+      end
+
       before do
         @resource = unconfirmable_users(:user)
         @redirect_url = 'http://ng-token-auth.dev'
 
-        puts  @resource.inspect
         xhr :post, :create, {
           email:        @resource.email,
           redirect_url: @redirect_url
