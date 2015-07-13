@@ -430,9 +430,6 @@ class DeviseTokenAuth::PasswordsControllerTest < ActionController::TestCase
 
         @resource.reload
       end
-      test 'unconfirmed email user should now be confirmed' do
-        # assert @resource.confirmed_at
-      end
     end
 
     describe 'alternate user type' do

@@ -105,8 +105,7 @@ module DeviseTokenAuth
         }
 
         # ensure that user is confirmed
-        @resource.skip_confirmation! unless !@resource.devise_modules.include?(:confirmable) && @resource.confirmed_at
-
+        @resource.skip_confirmation! if @resource.devise_modules.include?(:confirmable) && !@resource.confirmed_at
         @resource.save!
         yield if block_given?
 
