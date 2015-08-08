@@ -165,7 +165,7 @@ module DeviseTokenAuth
     end
 
     def resource_update_method
-      if DeviseTokenAuth.check_current_password_before_update != false
+      if DeviseTokenAuth.check_current_password_before_update != false && !params[:skip_current_password]
         "update_with_password"
       else
         "update_attributes"
